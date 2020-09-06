@@ -1,0 +1,74 @@
+# Guide
+
+Most of k1574's programs are written in C or Golang.
+For C programs as the building system is used
+Plan9 program mk, which is simplified version
+of make. Even so It works just fine to do it's work.
+To build any of these programs you obviously need this.
+To build itself is used the make program, which is
+installed mostly on every Linux or BSD distributions.
+
+
+## mk
+
+	git clone https://github.com/k1574/mk
+	cd mk
+	# vi mkconfig
+	make install
+
+By the standard behaviour all the programs, including mk
+are installed in $HOME/local/bin directory that is
+supposed to replace the standard root directory and
+prevent using sudo command which is pretty dangerous
+and doesn't make sense since every user on your
+machine can want to use his own versions of these
+programs. The behaviour can be changed by editing
+the mkconfig file.
+
+
+## C
+
+When you have mk you can install anything you want by this command:
+
+	mk install
+
+Also every application has it's own mkconfig file that can be edited.
+
+### Variables
+
+Some standard variables description:
+
+ * NAME - application name.
+ * VERSION - should I explain it?
+ * CC - C compiler. (cc)
+ * LD - object files linker. ($CC)
+ * STRIP - program to remove inessential information from execs and object files. (strip)
+ * LOCAL - root directory where everything is gonna be installed. ($HOME/local)
+ * BIN - directory for binary files. ($LOCAL/bin)
+ * SHR - consider it as alias for "share". ($LOCAL/shr)
+ * MAN - directory for man pages. The structure is taken from Plan9. ($SHR/man)
+
+### Dependencies
+
+In general because of my laziness I just put list of packages in file
+with name of the distribution I use. For example look how Voidlinux packages
+can be installed after you entering the git of choosen app: (bash, dash, sh etc)
+	
+	sudo xbps-install -S $(cat voidlinux)	
+
+Also: if you don't want to use sudo command then checkout
+https://github.com/k1574/sup .
+
+## Go 
+
+Golang has it's own way to install stuff:
+
+	go get -u https://github.com/k1574/<prog>	
+	go install https://github.com/k1574/<prog>
+
+### Dependencies
+
+Golang installs everything you need by itself.
+
+# Contacts
+k1574@yandex.ru
